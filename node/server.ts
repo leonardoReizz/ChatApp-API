@@ -5,7 +5,7 @@ app.listen(3333, ()=> {
    console.log('express up');
 });
 
-mongoose.connect("mongodb://sistema:sistema@189.17.218.10:55000/sistema")
+mongoose.connect("mongodb://chatappdb-user:chat-203-app@189.17.218.10:55300/chatapp?authMechanism=DEFAULT")
 .then(() => {
     console.log('mongo up');
 })
