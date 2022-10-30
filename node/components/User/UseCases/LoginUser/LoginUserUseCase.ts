@@ -5,6 +5,7 @@ class LoginUserUseCase {
     constructor(private userRepository: UserRepository){}
 
     async execute(user: ILoginUserRequestDTO) {
+        
         if(!user.email) 
             throw new Error('Invalid email');
         if(!user.password)

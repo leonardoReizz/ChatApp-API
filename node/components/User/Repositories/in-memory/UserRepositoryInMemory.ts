@@ -1,30 +1,24 @@
-import { IDefaultResult } from "../../../types/IDefaultResult";
-import { DBUSER } from "../Model/User";
-import { IUserRespository } from "./IUserRepository";
+import { IDefaultResult } from "../../../../types/IDefaultResult";
+import { DBUSER } from "../../Model/User";
+import { IUserRespository } from "./../IUserRepository";
 import md5 from 'md5';
 
 
-class UserRepository implements IUserRespository {
+class UserRepositoryInMemory implements IUserRespository {
+
+    private users: any[] = [];
+
     async login(user: any): Promise<IDefaultResult> {
-        const login = DBUSER.findOne({email: user.email, password: user.password})
-        .then((result) =>  {
-            return {
-                status: 200,
-                data: {
-                    msg: result,
-                },
+        const login = this.users.some((aUser) => 
+            aUser.email === user.email &&
+            aUser.password === md5(user.password)    
+        )
+        return {
+            status: 200,
+            data: {
+                msg: login,
             }
-        })
-        .catch((err) => {
-            console.log(err, ' ERROR DB LOGIN USER');
-            return {
-                status: 500,
-                data: {
-                    msg: 'Internal Error',
-                },
-            }
-        })
-        return login;
+        };
     }
 
     async register(user: any): Promise<IDefaultResult> {
@@ -54,4 +48,4 @@ class UserRepository implements IUserRespository {
 }
 
 
-export default UserRepository;
+export default UserRepositoryInMemory;
