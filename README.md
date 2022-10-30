@@ -2,10 +2,10 @@
 
 ### Tecnologias Utilizadas:<br/>
   -Typescript <br/>
-  -Express
-  -Principios SOLID
-  -MongoDB
-  -Socket
+  -Express <br/>
+  -Principios SOLID <br/>
+  -MongoDB <br/>
+  -Socket <br/>
 
 ### API da aplicação: 
 
