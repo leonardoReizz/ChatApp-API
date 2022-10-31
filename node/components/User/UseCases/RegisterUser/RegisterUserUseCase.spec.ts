@@ -7,7 +7,7 @@ describe('Register User', () => {
     let registerUseUseCase: RegisterUserUseCase;
 
     beforeAll(() => {
-        userRepositoryInMemory: new UserRepositoryInMemory();
+        userRepositoryInMemory = new UserRepositoryInMemory();
         registerUseUseCase = new RegisterUserUseCase(userRepositoryInMemory);
     });
 
@@ -56,19 +56,17 @@ describe('Register User', () => {
         }
     });
 
-    // it('should not be able to register, invalid password', async () => {
-    //     const user = {
-    //         fullName: 'Joao Paulo dos Santos',
-    //         email: 'joaopaulo',
-    //         password: 'joaopaulo@222',
-    //     }
+    it('should be able to register', async () => {
+        const user = {
+            fullName: 'Joao Paulo dos Santos',
+            email: 'joaopaulo',
+            password: 'joaopaulo@222',
+        }
 
-    //     try {
-    //         await registerUseUseCase.execute(user);
-    //     } catch (error) {
-                
-    //     }
-    // });
+        const result = await registerUseUseCase.execute(user);
+        
+        expect(result.status).toEqual(200)
+    });
 
     it('should not be able to register, invalid password', async () => {
         const user = {

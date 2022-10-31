@@ -22,28 +22,22 @@ class UserRepositoryInMemory implements IUserRespository {
     }
 
     async register(user: any): Promise<IDefaultResult> {
-        const crypt = {...user, password: md5(user.password)}
-        const createUser = new DBUSER(crypt);
-        const create = createUser.save()
-        .then((result) => {
+        this.users.push(user)
+        
+        if(this.users.length === 1){
             return {
                 status: 200,
                 data: {
-                    msg: result,
-                },
+                    msg: this.users,
+                }
             }
-        })
-        .catch((err) => {
-            console.log(err, ' ERROR DB REGISTER USER')
-            return {
-                status: 200,
-                data: {
-                    msg: 'Internal Error',
-                },
+        } 
+        return {
+            status: 500,
+            data: {
+                msg: 'Internal error',
             }
-        });
-
-        return create;
+        }
     }
 }
 
