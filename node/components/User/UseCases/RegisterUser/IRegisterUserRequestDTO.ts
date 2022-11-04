@@ -1,5 +1,5 @@
 export interface IRegisterUseRequestDTO {
-    fullName: string;
-    email: string;
-    password: string;
+	fullName: string;
+	email: string;
+	password: string;
 }
