@@ -3,7 +3,6 @@ import loginUserController from "../components/User/UseCases/LoginUser";
 import registerUserController from "../components/User/UseCases/RegisterUser";
 
 
-
 const userRoutes = Router();
 
 userRoutes.post('/login', async (req: Request, res: Response) => {

@@ -1,3 +1,5 @@
+import md5 from "md5";
+import jwt from "jsonwebtoken";
 import UserRepository from "../../Repositories/UserRepository";
 import { ILoginUserRequestDTO } from "./ILoginUserRequestDTO";
 
@@ -11,8 +13,29 @@ class LoginUserUseCase {
 		if (!user.password)
 			throw new Error('Invalid password');
 
-		return await this.userRepository.login(user);
+		const login = await this.userRepository.login({...user, password: md5(user.password)});
 
+		if (login.data.msg === undefined)
+			throw new Error('Invalid email or password');
+
+		const secret = process.env.SECRET as string;
+
+		console.log(secret)
+		const token = jwt.sign(
+			{
+				id: login.data.msg._id
+			},
+			secret,
+		)
+		return {
+			status: login.status,
+			data: {
+				msg: {
+					...login.data.msg,
+					token
+				}
+			}
+		};
 	}
 }
 

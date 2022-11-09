@@ -1,18 +1,19 @@
 import { IDefaultResult } from "../../../types/IDefaultResult";
 import { DBUSER } from "../Model/User";
 import { IUserRespository } from "./IUserRepository";
-import md5 from 'md5';
 
 
 class UserRepository implements IUserRespository {
 	async login(user: any): Promise<IDefaultResult> {
 		const login = DBUSER.findOne({ email: user.email, password: user.password })
-			.then((result) => {
+			.select('-password')
+			.then((result: any) => {
+				console.log(result);
 				return {
 					status: 200,
 					data: {
-						msg: result,
-					},
+						msg: result?._doc
+					}
 				}
 			})
 			.catch((err) => {
@@ -30,12 +31,12 @@ class UserRepository implements IUserRespository {
 	async register(user: any): Promise<IDefaultResult> {
 		const createUser = new DBUSER(user);
 		const create = createUser.save()
-			.then((result) => {
+			.then((result: any) => {
 				return {
 					status: 200,
 					data: {
-						msg: result,
-					},
+						msg: result
+					}
 				}
 			})
 			.catch((err) => {

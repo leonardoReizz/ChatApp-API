@@ -20,7 +20,7 @@ describe('Find User By Email Use Case', () => {
     })
   });
 
-  it('should be able to find user by email', async() => {
+  it('should not be able to find user by email -> Invalid email', async() => {
     const find: Error = await getError(async () => 
       await findUserByEmailUseCase.execute('')
     );
@@ -29,7 +29,7 @@ describe('Find User By Email Use Case', () => {
     expect(find.message).toEqual('Invalid email');
   });
 
-  it('should not able to find user by email -> Invalid email', async() => {
+  it('should be able to find user by email', async() => {
     const find = await findUserByEmailUseCase.execute('test@gmail.com');
 
     expect(find.status).toEqual(200);
