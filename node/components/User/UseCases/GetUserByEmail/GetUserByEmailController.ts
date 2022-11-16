@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import FindUserByEmailUseCase from "./FindUserByEmailUseCase";
+import GetUserByEmailUseCase from "./GetUserByEmailUseCase";
 
-class FindUserByEmailController {
-  constructor(private findUserByEmailUseCase: FindUserByEmailUseCase){}
+class GetUserByEmailController {
+  constructor(private findUserByEmailUseCase: GetUserByEmailUseCase){}
 
   async handle(req: Request, res: Response) {
     const email = req.params.email;
@@ -16,4 +16,4 @@ class FindUserByEmailController {
   }
 }
 
-export default FindUserByEmailController;
+export default GetUserByEmailController;

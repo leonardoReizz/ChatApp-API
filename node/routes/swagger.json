@@ -69,7 +69,7 @@
                   "value": {
                     "fullName": "Stefano Gill",
                     "email": "stefanofill@gmail.com",
-                    "password": "stefano@123" 
+                    "password": "stefano@123"
                   }
                 }
               }
@@ -78,7 +78,25 @@
         },
         "responses": {
           "400": {
-            
+
+          },
+          "200": {
+
+          }
+        }
+      }
+    },
+    "friends/": {
+      "get": {
+        "summary": "List Friends",
+        "description": "Route responsible to list yours friends",
+        "tags": ["Friends"],
+        "responses": {
+          "400": {
+
+          },
+          "403": {
+
           },
           "200": {
 
@@ -121,7 +139,7 @@
             "type": "string"
           },
           "email":{
-            "type": "string" 
+            "type": "string"
           },
           "password": {
             "type": "string"

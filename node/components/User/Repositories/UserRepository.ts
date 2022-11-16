@@ -1,6 +1,7 @@
 import { IDefaultResult } from "../../../types/IDefaultResult";
 import { DBUSER } from "../Model/User";
 import { IUserRespository } from "./IUserRepository";
+import {User} from "./types";
 
 
 class UserRepository implements IUserRespository {
@@ -28,7 +29,7 @@ class UserRepository implements IUserRespository {
 		return login;
 	}
 
-	async register(user: any): Promise<IDefaultResult> {
+	async register(user: User): Promise<IDefaultResult> {
 		const createUser = new DBUSER(user);
 		const create = createUser.save()
 			.then((result: any) => {
@@ -52,7 +53,7 @@ class UserRepository implements IUserRespository {
 		return create;
 	}
 
-	async findByEmail(email: string): Promise<IDefaultResult> {
+	async getUserByEmail(email: string): Promise<IDefaultResult> {
 		const find = DBUSER.find({email: email})
 			.then((result) => {
 				return {
@@ -73,6 +74,27 @@ class UserRepository implements IUserRespository {
 			})
 
 		return find;
+	}
+
+	async getUserById(userId: string): Promise<IDefaultResult> {
+		return await DBUSER.find({_id: userId})
+			.then((result) => {
+				return {
+					status: 200,
+					data: {
+						msg: result
+					}
+				}
+			})
+			.catch((error) => {
+				console.log(error, ' ERROR DB FIND USER BY ID');
+				return {
+					status: 500,
+					data: {
+						msg: 'Internal Error'
+					}
+				}
+			})
 	}
 }
 

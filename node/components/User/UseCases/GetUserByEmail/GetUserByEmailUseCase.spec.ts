@@ -1,16 +1,16 @@
 import getError from "../../../../utils/Erros/getError";
 import UserRepositoryInMemory from "../../Repositories/in-memory/UserRepositoryInMemory";
 import RegisterUserUseCase from "../RegisterUser/RegisterUserUseCase";
-import FindUserByEmailUseCase from "./FindUserByEmailUseCase";
+import GetUserByEmailUseCase from "./GetUserByEmailUseCase";
 
 describe('Find User By Email Use Case', () => {
   let userRepository: UserRepositoryInMemory;
-  let findUserByEmailUseCase: FindUserByEmailUseCase;
+  let findUserByEmailUseCase: GetUserByEmailUseCase;
   let registerUserUseCase: RegisterUserUseCase;  
   
   beforeAll(() => {
     userRepository = new UserRepositoryInMemory();
-    findUserByEmailUseCase = new FindUserByEmailUseCase(userRepository);
+    findUserByEmailUseCase = new GetUserByEmailUseCase(userRepository);
     registerUserUseCase = new RegisterUserUseCase(userRepository);
 
     registerUserUseCase.execute({

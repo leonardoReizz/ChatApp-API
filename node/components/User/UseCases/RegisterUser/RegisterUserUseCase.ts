@@ -21,7 +21,11 @@ class RegisterUserUseCase {
 		if(findEmail.data.msg?.length > 0)
 			throw new Error('Email already exist');
 
-		return await this.userRepository.register({...user, password: md5(user.password)});
+		return await this.userRepository.register({
+			...user,
+			password: md5(user.password),
+			imageProfile: 'null'
+		});
 	}
 }
 

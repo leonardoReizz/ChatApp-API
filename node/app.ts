@@ -1,11 +1,8 @@
-import express from 'express'
-import routes from './routes/routes'
+import express from 'express';
+import routes from './routes/routes';
 
-import cors from "cors"
-import bodyParser from 'body-parser'
-import swaggerJsDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
-
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 class App {
 	public express: express.Application;

@@ -1,4 +1,5 @@
 
+// @ts-ignore
 import md5 from 'md5';
 import request from 'supertest';
 import { app } from '../../../../server';

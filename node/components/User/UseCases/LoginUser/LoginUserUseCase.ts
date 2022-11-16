@@ -19,8 +19,6 @@ class LoginUserUseCase {
 			throw new Error('Invalid email or password');
 
 		const secret = process.env.SECRET as string;
-
-		console.log(secret)
 		const token = jwt.sign(
 			{
 				id: login.data.msg._id
