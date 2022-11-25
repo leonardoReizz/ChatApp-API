@@ -9,7 +9,6 @@ class UserRepository implements IUserRespository {
 		const login = DBUSER.findOne({ email: user.email, password: user.password })
 			.select('-password')
 			.then((result: any) => {
-				console.log(result);
 				return {
 					status: 200,
 					data: {
@@ -78,6 +77,49 @@ class UserRepository implements IUserRespository {
 
 	async getUserById(userId: string): Promise<IDefaultResult> {
 		return await DBUSER.find({_id: userId})
+			.then((result) => {
+				return {
+					status: 200,
+					data: {
+						msg: result
+					}
+				}
+			})
+			.catch((error) => {
+				console.log(error, ' ERROR DB FIND USER BY ID');
+				return {
+					status: 500,
+					data: {
+						msg: 'Internal Error'
+					}
+				}
+			})
+	}
+
+	async findByEmail(email: string): Promise<IDefaultResult> {
+		return await DBUSER.find({email: email})
+			.then((result) => {
+				return {
+					status: 200,
+					data: {
+						msg: result
+					}
+				}
+			})
+			.catch((error) => {
+				console.log(error, ' ERROR DB FIND USER BY EMAIL');
+				return {
+					status: 500,
+					data: {
+						msg: 'Internal Error'
+					}
+				}
+			})
+	}
+
+	async getMyUser(userId: string): Promise<IDefaultResult> {
+		return await DBUSER.findOne({_id: userId})
+			.select('-password')
 			.then((result) => {
 				return {
 					status: 200,

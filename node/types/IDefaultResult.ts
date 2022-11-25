@@ -4,3 +4,8 @@ export interface IDefaultResult {
         msg: any;
     }
 }
+
+export interface IUserSocket {
+    email: string;
+    socketId: string;
+}

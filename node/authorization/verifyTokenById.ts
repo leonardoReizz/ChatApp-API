@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 
 const verifyTokenById = (userId: string, authorization: string) => {
