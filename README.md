@@ -1,5 +1,4 @@
-# ChatApp-API 1.0.0
-
+# ChatApp-API
 ### Tecnologias Utilizadas:<br/>
   -Typescript <br/>
   -Express <br/>
